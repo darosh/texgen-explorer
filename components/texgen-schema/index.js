@@ -1,0 +1,1 @@
+export {getSchema} from './getSchema';

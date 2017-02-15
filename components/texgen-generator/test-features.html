@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            display: block;
+            margin-bottom: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<script src="../texgen/texgen.js"></script>
+<script src="../texgen-recipe/texgen-recipe.js"></script>
+<script src="../texgen-workers/texgen-workers.js"></script>
+<script src="../texgen-schema/texgen-schema.js"></script>
+<script src="../texgen-generator/texgen-generator.js"></script>
+<script>
+    var size = 128;
+    var canvas = document.getElementById('canvas');
+    var workers = TG.getWorkers('../texgen-worker/texgen-worker.js', 4);
+
+    TG.getFeatures().forEach(function (sample, i) {
+        var span = document.createElement('div');
+        span.id = 'id' + i;
+        span.textContent = sample.title;
+        document.body.appendChild(span);
+        var worker = workers.worker();
+        worker.onmessage = function (e) {
+            var canvas = TG.bufferToCanvas(e.data.buffer, e.data.width, e.data.height, canvas);
+            document.getElementById('id' + e.data.id).appendChild(canvas);
+        };
+        worker.postMessage({
+            fnc: TG.recipeToBody(sample.render),
+            width: size,
+            height: size / 2,
+            id: i
+        });
+    });
+</script>
+</body>
+</html>

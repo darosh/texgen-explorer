@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>explorer | texgen.js</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-light.min.css">
+    <link rel="stylesheet" href="./pages/styles/topcoat-customization.css">
+    <link rel="stylesheet" href="./pages/styles/layout.css">
+    <link rel="stylesheet" href="./pages/styles/menu.css">
+    <link rel="stylesheet" href="./pages/styles/blocks.css">
+    <link rel="stylesheet" href="./pages/styles/status.css">
+</head>
+<body>
+<h1 class="left">explorer <span>|</span> texgen.js
+    <small>— Procedural Texture Generator</small>
+</h1>
+<div class="right menu">
+    <a class="active" href="./index.html">Explorer</a> |
+    <a href="./pages/samples.html">Samples</a> |
+    <a href="./pages/features.html">Features</a> |
+    <a href="./pages/editor.html">Editor</a> |
+    <a href="./pages/storage.html">Storage</a> |
+    <a href="https://github.com/darosh/texgen-explorer">About</a>
+</div>
+<div class="clear"></div>
+<div class="layout-form">
+    <fieldset>
+        <legend>Action</legend>
+        <button class="topcoat-button" id="refresh">Randomize</button>
+    </fieldset>
+</div>
+<div id="list" class="layout-blocks layout-blocks-small"></div>
+<div class="layout">
+    <hr>
+    <div class="status right"></div>
+</div>
+<script src="//d3js.org/d3-selection.v1.min.js"></script>
+<script src="//d3js.org/d3-format.v1.min.js"></script>
+<script src="./pages/scripts/utils.js"></script>
+<script src="./pages/scripts/explorer.js"></script>
+<script src="./components/components.js"></script>
+<script>
+    explorer({
+        size: [96, 96],
+        testSize: [8, 8],
+        limit: 90,
+        worker: './components/texgen-worker/texgen-worker.js',
+        workers: 3
+    });
+</script>
+</body>
+</html>

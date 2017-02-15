@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script src="../texgen/texgen.js"></script>
+<script src="../texgen-samples/texgen-samples.js"></script>
+<script src="../texgen-recipe/texgen-recipe.js"></script>
+<script>
+    var sample = TG.samples[1];
+    var size = 256;
+    var canvas = document.getElementById('canvas');
+    var worker = new Worker('./texgen-worker.js');
+    worker.onmessage = function (e) {
+        TG.bufferToCanvas(e.data.buffer, e.data.width, e.data.height, canvas);
+    };
+    worker.postMessage({
+        fnc: TG.recipeToBody(sample.render),
+        width: size,
+        height: size
+    });
+</script>
+</body>
+</html>

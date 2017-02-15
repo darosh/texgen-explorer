@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    overflow-y: scroll;
+}
+
+html.layout-full, .layout-full body {
+    height: 100%;
+}
+
+.layout-full body {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.layout-form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.layout-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 20px 0 20px;
+}
+
+.layout-blocks-small {
+    margin: 15px 35px 15px 35px;
+}
+
+.layout-blocks-small .block {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.block-small {
+    margin: 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.left {
+    float: left;
+    text-align: left;
+}
+
+.right {
+    float: right;
+    text-align: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.layout-flex {
+    flex: 1;
+    align-content: stretch;
+    display: flex;
+    margin: 10px 30px 40px 30px;
+}
+
+.layout-flex > * {
+    margin: 0 10px 0 10px;
+}
+.layout-flex > .grow {
+    flex-grow: 1;
+    overflow-y: scroll;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.right.menu {
+    margin: 40px 40px 0 0;
+}
+
+h1 {
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}

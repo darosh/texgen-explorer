@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>features | texgen.js</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-light.min.css">
+    <link rel="stylesheet" href="./styles/topcoat-customization.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/blocks.css">
+    <link rel="stylesheet" href="./styles/status.css">
+</head>
+<body>
+<h1 class="left">features <span>|</span> texgen.js
+    <small>— Procedural Texture Generator</small>
+</h1>
+<div class="right menu">
+    <a href="../index.html">Explorer</a> |
+    <a href="./samples.html">Samples</a> |
+    <a class="active" href="./features.html">Features</a> |
+    <a href="./editor.html">Editor</a> |
+    <a href="./storage.html">Storage</a> |
+    <a href="https://github.com/darosh/texgen-explorer">About</a>
+</div>
+<div class="clear"></div>
+<div class="layout-form">
+    <fieldset>
+        <legend>Size</legend>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="size" value="128,128" checked>
+            <div class="topcoat-radio-button__checkmark"></div>
+            128
+        </label>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="size" value="256,256">
+            <div class="topcoat-radio-button__checkmark"></div>
+            256
+        </label>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="size" value="512,512">
+            <div class="topcoat-radio-button__checkmark"></div>
+            512
+        </label>
+        <label class="topcoat-checkbox">
+            <input type="checkbox" id="proportional">
+            <div class="topcoat-checkbox__checkmark"></div>
+            Scale
+        </label>
+    </fieldset>
+</div>
+<div id="list"></div>
+<div class="layout">
+    <hr>
+    <div class="status right"></div>
+</div>
+<script src="//d3js.org/d3-selection.v1.min.js"></script>
+<script src="//d3js.org/d3-format.v1.min.js"></script>
+<script src="./scripts/utils.js"></script>
+<script src="./scripts/features.js"></script>
+<script src="../components/components.js"></script>
+<script>
+    renderFeatures(TG.getFeatures(), {
+        size: [128, 128],
+        worker: '../components/texgen-worker/texgen-worker.js',
+        workers: 3
+    });
+</script>
+</body>
+</html>

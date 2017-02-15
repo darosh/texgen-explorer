@@ -1,0 +1,7 @@
+{
+  "name": "texgen-workers",
+  "version": "2.0.0",
+  "main": "texgen-workers.js",
+  "module": "index.js",
+  "dependencies": {}
+}

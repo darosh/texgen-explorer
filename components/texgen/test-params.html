@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            font-family: sans-serif;
+        }
+
+        td, th {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 2px 4px;
+        }
+    </style>
+</head>
+<body>
+<div id="target"></div>
+<script id="template" type="x-tmpl-mustache">
+<table>
+<tr>
+<td></td>
+{{#params}}
+<th>{{.}}</td>
+{{/params}}
+</tr>
+{{#programs}}
+<tr>
+<th>{{name}}</th>
+{{#data}}
+<td>
+<div>
+<small><i>{{type}}</i></small>
+</div>
+{{#range}}
+<small>{{min}}&mdash;{{max}}</small>
+<br>
+{{/range}}
+<b>{{val}}</b>
+{{#scale}}{{{scale}}}{{/scale}}
+</td>
+{{/data}}
+</tr>
+{{/programs}}
+</table>
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+<script src="../texgen/texgen.js"></script>
+<script>
+    var paramList = {};
+    var programList = [];
+
+    Object.keys(TG.Programs).forEach(function (group) {
+        Object.keys(TG.Programs[group]).forEach(function (program) {
+            programList.push(program);
+
+            if (!TG.Programs[group][program].params) {
+                return;
+            }
+
+            Object.keys(TG.Programs[group][program].params).forEach(function (param) {
+                paramList[param] = paramList[param] || {};
+                paramList[param][program] = TG.Programs[group][program].params[param];
+            });
+        });
+    });
+
+
+    var data = {
+        params: Object.keys(paramList),
+        programs: programList.map(function (p) {
+            return {
+                name: p,
+                data: Object.keys(paramList).map(function (d) {
+                    var q = paramList[d][p];
+                    return {
+                        scale: (q && (q.scale !== undefined)) ? q.scale ? '&times;' : '/' : '',
+                        type: !q || !q.type
+                            ? ''
+                            : TG.Type[q.type || 0],
+                        range: q && (!isNaN(q.min) || !isNaN(q.max)),
+                        val: q && (JSON.stringify(q.val)),
+                        min: !q
+                            ? ''
+                            : q.min === TG.EPSILON
+                                ? '0<'
+                                : isNaN(q.min)
+                                    ? '?'
+                                    : q.min,
+                        max: !q
+                            ? ''
+                            : isNaN(q.max)
+                                ? '?'
+                                : q.max
+                    };
+                })
+            };
+        })
+    };
+
+    var template = document.getElementById('template').innerHTML;
+    Mustache.parse(template);
+    var rendered = Mustache.render(template, data);
+    document.getElementById('target').innerHTML = rendered;
+</script>
+</body>
+</html>

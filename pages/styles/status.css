@@ -1,0 +1,12 @@
+.status {
+    font-weight: 300;
+}
+
+.status b {
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.layout .status {
+    margin-bottom: 15px;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "texgen-samples",
+  "version": "2.0.0",
+  "main": "texgen-samples.js",
+  "module": "index.js",
+  "dependencies": {}
+}

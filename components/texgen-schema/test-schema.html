@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<textarea id="schema" cols="120" rows="30"></textarea>
+<script src="../texgen/texgen.js"></script>
+<script src="./texgen-schema.js"></script>
+<script>
+    var schema = document.getElementById('schema');
+    schema.textContent = JSON.stringify(TG.getSchema(), null, 4);
+</script>
+</body>
+</html>

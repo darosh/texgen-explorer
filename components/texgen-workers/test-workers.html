@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-size: 0;
+        }
+    </style>
+</head>
+<body>
+<script src="../texgen/texgen.js"></script>
+<script src="../texgen-samples/texgen-samples.js"></script>
+<script src="../texgen-recipe/texgen-recipe.js"></script>
+<script src="../texgen-workers/texgen-workers.js"></script>
+<script>
+    var size = 128;
+    var canvas = document.getElementById('canvas');
+    var workers = TG.getWorkers('../texgen-worker/texgen-worker.js', 4);
+
+    TG.samples.forEach(function (sample) {
+        var worker = workers.worker();
+        worker.onmessage = function (e) {
+            var canvas = TG.bufferToCanvas(e.data.buffer, e.data.width, e.data.height, canvas);
+            document.body.appendChild(canvas);
+        };
+        worker.postMessage({
+            fnc: TG.recipeToBody(sample.render),
+            width: size,
+            height: size
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<textarea id="recipe" cols="60" rows="30"></textarea>
+<textarea id="fnc" cols="60" rows="30"></textarea>
+<canvas id="canvas"></canvas>
+<script src="../texgen/texgen.js"></script>
+<script src="../texgen-samples/texgen-samples.js"></script>
+<script src="../texgen-recipe/texgen-recipe.js"></script>
+<script src="../texgen-schema/texgen-schema.js"></script>
+<script src="../texgen-generator/texgen-generator.js"></script>
+<script>
+    var sample = TG.getRandom();
+    var size = 256;
+    var recipe = document.getElementById('recipe');
+    var fnc = document.getElementById('fnc');
+    var canvas = document.getElementById('canvas');
+    recipe.value = JSON.stringify(sample, null, 2);
+    recipe.addEventListener('input', update);
+    update();
+
+    function update() {
+        var render = JSON.parse(recipe.value).render;
+        fnc.value = TG.recipeToBody(render);
+        canvas.width = size;
+        canvas.height = size;
+        var textureFnc = TG.recipeToFunction(render);
+        var texture = textureFnc(size, size);
+        texture.toCanvas(canvas);
+    }
+</script>
+</body>
+</html>

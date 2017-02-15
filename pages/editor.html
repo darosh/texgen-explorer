@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="layout-full">
+<head>
+    <meta charset="UTF-8">
+    <title>editor | texgen.js</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-light.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
+    <link rel="stylesheet" href="./styles/topcoat-customization.css">
+    <link rel="stylesheet" href="./styles/blocks.css">
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./styles/input-color.css">
+    <link rel="stylesheet" href="./styles/status.css">
+    <style>
+        .view {
+            display: none;
+        }
+
+        .view-editor #editor, .view-data #data, .view-code #code {
+            display: block;
+        }
+    </style>
+</head>
+<body class="view-editor">
+<div>
+    <h1 class="left">editor <span>|</span> texgen.js
+        <small>— Procedural Texture Generator</small>
+    </h1>
+    <div class="right menu">
+        <a href="../index.html">Explorer</a> |
+        <a href="./samples.html">Samples</a> |
+        <a href="./features.html">Features</a> |
+        <a class="active" href="./editor.html">Editor</a> |
+        <a href="./storage.html">Storage</a> |
+        <a href="https://github.com/darosh/texgen-explorer">About</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="layout-form">
+    <fieldset>
+        <legend>Action</legend>
+        <button id="button-save" class="topcoat-button">Store</button>
+        <button id="button-delete" class="topcoat-button">Delete</button>
+    </fieldset>
+    <fieldset>
+        <legend>Size</legend>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="size" value="128">
+            <div class="topcoat-radio-button__checkmark"></div>
+            128
+        </label>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="size" value="256" checked>
+            <div class="topcoat-radio-button__checkmark"></div>
+            256
+        </label>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="size" value="512">
+            <div class="topcoat-radio-button__checkmark"></div>
+            512
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend>View</legend>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="view" value="editor" checked>
+            <div class="topcoat-radio-button__checkmark"></div>
+            Editor
+        </label>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="view" value="data">
+            <div class="topcoat-radio-button__checkmark"></div>
+            Data
+        </label>
+        <label class="topcoat-radio-button">
+            <input type="radio" name="view" value="code">
+            <div class="topcoat-radio-button__checkmark"></div>
+            Code
+        </label>
+    </fieldset>
+</div>
+<div class="layout-flex">
+    <div>
+        <div id="img" class="block block-large">
+            <canvas width="256" height="256"></canvas>
+            <div class="time bottom">&nbsp;</div>
+        </div>
+        <div class="status" style="margin-top: 10px"></div>
+    </div>
+    <div id="editor" class="view grow" style="margin-top: -10px; padding-top: 10px;"></div>
+    <textarea id="data" class="view block small grow" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+    <textarea id="code" class="view block small grow" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+</div>
+<script src="//d3js.org/d3-selection.v1.min.js"></script>
+<script src="//d3js.org/d3-format.v1.min.js"></script>
+<script src="//d3js.org/d3-color.v1.min.js"></script>
+<script src="../components/components.js"></script>
+<script src="./scripts/utils.js"></script>
+<script src="./scripts/editor.js"></script>
+<script>
+    editor({
+        size: 256,
+        smallSize: 96,
+        worker: '../components/texgen-worker/texgen-worker.js',
+        workers: 3
+    });
+</script>
+</body>
+</html>

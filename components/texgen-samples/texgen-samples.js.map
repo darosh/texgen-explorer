@@ -1,0 +1,1 @@
+{"version":3,"file":"texgen-samples.js","sources":["index.js"],"sourcesContent":["import _samples from './samples.json';\r\n\r\nexport const samples = _samples;\r\n"],"names":["samples","_samples"],"mappings":";4qKAEaA,EAAUC"}

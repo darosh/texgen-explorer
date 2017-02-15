@@ -1,0 +1,39 @@
+
+
+
+
+
+
+.form.edit {
+    margin-left: 35px;
+    margin-right: 35px;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+
+
+
+
+.block.small.multi {
+    display: flex;
+    background: none;
+}
+
+
+
+
+
+.b canvas {
+    margin-left: 5px;
+}
+
+.sub-form > * {
+    margin-right: 0;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.sub-form
+
+

@@ -1,0 +1,12 @@
+.menu {
+    color: rgba(0, 0, 0, 0.36);
+    font-weight: 300;
+}
+
+.menu a {
+    font-weight: normal;
+}
+
+.menu a.active {
+    color: rgba(0, 0, 0, 0.36);
+}
