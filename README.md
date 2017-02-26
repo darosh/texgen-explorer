@@ -1,5 +1,7 @@
 # texgen-explorer
 
+__Abandoned, see faster [glt](https://github.com/darosh/glt) project.__
+
 Explorer for [texgen.js](https://github.com/mrdoob/texgen.js) — Procedural Texture Generator
 
 Powered by [modified](./components/texgen) version of [texgen.js](https://github.com/mrdoob/texgen.js).
